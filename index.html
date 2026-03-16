@@ -8,37 +8,36 @@
       gtag('js', new Date());
       gtag('config', 'G-19CM7TCLNT');
     </script>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>LOVEFILM - Svadobný Kameraman</title>
-    
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E💍%3C/text%3E%3C/svg%3E">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-
         * { box-sizing: border-box; }
-
+        
         body, html {
             margin: 0; padding: 0;
-            width: 100%; height: 100%;
-            overflow: hidden;
+            width: 100%; min-height: 100%;
+            /* Povolíme scroll, aby sa zmestilo zdieľanie pod vizitku */
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         body {
             background: radial-gradient(circle, #f9f0df 0%, #e6be8a 100%);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            padding: 20px 0; /* Priestor nad a pod vizitkou */
             font-family: 'Arial', sans-serif;
             -webkit-font-smoothing: antialiased;
         }
 
         .card {
             width: 350px;
-            max-height: 98vh;
             background: #fdfaf5;
             border-radius: 20px;
             overflow: hidden;
@@ -48,6 +47,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            margin-bottom: 25px; /* Medzera medzi vizitkou a zdieľaním */
         }
 
         .top-image {
@@ -69,7 +69,7 @@
         }
 
         .content {
-            padding: 10px 20px;
+            padding: 15px 20px;
             background: #fdfaf5;
         }
 
@@ -96,7 +96,7 @@
         h1 {
             color: #0d1b3e;
             font-size: 17px;
-            margin: 12px 0 5px 0;
+            margin: 15px 0 5px 0;
             text-transform: uppercase;
         }
 
@@ -110,25 +110,15 @@
         .services {
             list-style: none;
             padding: 0;
-            margin: 0 auto 12px auto;
+            margin: 0 auto 15px auto;
             display: inline-block;
             text-align: left;
-            font-size: 12px;
+            font-size: 13px;
             color: #333;
         }
 
-        .services li {
-            margin-bottom: 4px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .services li::before {
-            content: '•';
-            color: #c5a059;
-            position: absolute;
-            left: 0;
-        }
+        .services li { margin-bottom: 4px; padding-left: 20px; position: relative; }
+        .services li::before { content: '•'; color: #c5a059; position: absolute; left: 0; }
 
         .contacts {
             background: #0d1b3e;
@@ -146,19 +136,10 @@
             text-decoration: none;
             margin-bottom: 10px;
             font-size: 12px;
-            transition: color 0.3s;
             width: 75%;
         }
 
-        .contact-link:hover { color: #c5a059; }
-
-        .icon {
-            width: 22px;
-            margin-right: 8px;
-            color: #c5a059;
-            text-align: center;
-            font-size: 14px;
-        }
+        .icon { width: 22px; margin-right: 8px; color: #c5a059; text-align: center; font-size: 14px; }
 
         .qr-container {
             position: absolute;
@@ -170,11 +151,7 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .qr-container img {
-            display: block;
-            width: 65px;
-            height: 65px;
-        }
+        .qr-container img { display: block; width: 65px; height: 65px; }
 
         .btn-container {
             display: flex;
@@ -194,10 +171,7 @@
             text-transform: uppercase;
             font-size: 11px;
             text-align: center;
-            transition: 0.3s;
         }
-
-        .main-btn:hover { background: #e2bd78; }
 
         .secondary-btn {
             border: 1px solid #c5a059;
@@ -209,54 +183,126 @@
             border-radius: 8px;
             font-weight: bold;
             text-align: center;
-            transition: 0.3s;
         }
 
-        .secondary-btn:hover { background: rgba(197, 160, 89, 0.1); }
+        /* Sekcia zdieľania pod vizitkou */
+        .share-area {
+            text-align: center;
+            width: 350px;
+            padding-bottom: 20px;
+        }
+
+        .share-label {
+            font-size: 12px;
+            color: #0d1b3e;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .share-item {
+            background: white;
+            color: #0d1b3e;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            text-decoration: none;
+            border: 1px solid #c5a059;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .share-item:hover {
+            background: #c5a059;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .copy-link-btn {
+            background: #0d1b3e;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 20px;
+            font-size: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            border: 1px solid #c5a059;
+        }
     </style>
 </head>
 <body>
 
 <div class="card">
     <div class="top-image"></div>
-    
     <div class="content">
         <p class="logo-text">LOVEFILM</p>
         <span class="logo-sub">MOTION PICTURES</span>
-        
         <h1>Svadobný kameraman</h1>
         <p class="slogan">Zachytíme váš jedinečný deň</p>
-
         <ul class="services">
             <li>Filmové svadobné klipy</li>
             <li>Celodenný záznam a spracovanie</li>
             <li>Profesionálna postprodukcia</li>
         </ul>
     </div>
-
     <div class="contacts">
-        <a href="tel:+421950535194" class="contact-link">
-            <i class="fas fa-phone icon"></i> +421 950 535 194
-        </a>
-
-        <a href="mailto:lovefilmmotionpictures@gmail.com" class="contact-link">
-            <i class="fas fa-envelope icon"></i> lovefilmmotionpictures@gmail.com
-        </a>
-
-        <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="contact-link">
-            <i class="fab fa-facebook-f icon"></i> Facebook: LOVEFILM
-        </a>
-
+        <a href="tel:+421950535194" class="contact-link"><i class="fas fa-phone icon"></i> +421 950 535 194</a>
+        <a href="mailto:lovefilmmotionpictures@gmail.com" class="contact-link"><i class="fas fa-envelope icon"></i> lovefilmmotionpictures@gmail.com</a>
+        <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="contact-link"><i class="fab fa-facebook-f icon"></i> Facebook: LOVEFILM</a>
         <div class="btn-container">
             <a href="https://lovefilm.rf.gd/?i=1" target="_blank" class="main-btn">Rezervuj si termín</a>
             <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="secondary-btn">Portfólio</a>
         </div>
-
         <div class="qr-container">
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://jozmas.github.io/lovefilm/" alt="QR Vizitka">
         </div>
     </div>
 </div>
+
+<div class="share-area">
+    <div class="share-label">Odporučte nás ďalej</div>
+    <div class="share-buttons">
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://twitter.com/intent/tweet?url=https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
+            <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="https://api.whatsapp.com/send?text=Pozri si túto svadobnú vizitku: https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <button class="copy-link-btn" onclick="copyURL()" id="copyBtn">Kopírovať odkaz</button>
+    </div>
+</div>
+
+<script>
+    function copyURL() {
+        const url = "https://jozmas.github.io/lovefilm/";
+        navigator.clipboard.writeText(url).then(() => {
+            const btn = document.getElementById('copyBtn');
+            const oldText = btn.innerText;
+            btn.innerText = "Skopírované!";
+            btn.style.background = "#c5a059";
+            setTimeout(() => {
+                btn.innerText = oldText;
+                btn.style.background = "#0d1b3e";
+            }, 2000);
+        });
+    }
+</script>
 
 </body>
 </html>
