@@ -21,14 +21,14 @@
         body, html {
             margin: 0; padding: 0;
             width: 100%; height: 100%;
-            overflow: hidden; /* Zakáže scroll */
+            overflow: hidden;
         }
 
         body {
             background: radial-gradient(circle, #f9f0df 0%, #e6be8a 100%);
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Vycentruje vizitku na stred */
+            justify-content: center;
             align-items: center;
             font-family: 'Arial', sans-serif;
             -webkit-font-smoothing: antialiased;
@@ -45,7 +45,6 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            /* Jemne zmenšený spodný okraj pre mobily */
             margin-bottom: 15px; 
         }
 
@@ -68,7 +67,7 @@
         }
 
         .content {
-            padding: 10px 20px; /* Upravený padding pre úsporu miesta */
+            padding: 10px 20px;
             background: #fdfaf5;
         }
 
@@ -121,7 +120,7 @@
 
         .contacts {
             background: #0d1b3e;
-            padding: 15px 20px; /* Mierne ubraté z výšky */
+            padding: 15px 20px;
             border-top: 4px solid #c5a059;
             flex-grow: 1;
             position: relative;
@@ -235,6 +234,10 @@
 </head>
 <body>
 
+<audio id="bgMusic" loop>
+    <source src="https://raw.githubusercontent.com/jozmas/my-images/main/lovefilm.mp3" type="audio/mpeg">
+</audio>
+
 <div class="card">
     <div class="top-image"></div>
     <div class="content">
@@ -279,6 +282,15 @@
 </div>
 
 <script>
+    // Funkcia na spustenie hudby pri prvom kliknutí
+    document.addEventListener('click', function() {
+        const audio = document.getElementById('bgMusic');
+        if (audio.paused) {
+            audio.play().catch(e => console.log("Audio autoplay blocked or failed."));
+            audio.volume = 0.4; // Hlasitosť na 40%
+        }
+    }, { once: true });
+
     function copyURL() {
         const url = "https://jozmas.github.io/lovefilm/";
         navigator.clipboard.writeText(url).then(() => {
