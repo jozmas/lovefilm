@@ -20,20 +20,23 @@
         
         body, html {
             margin: 0; padding: 0;
-            width: 100%; min-height: 100%;
-            /* Povolíme scroll, aby sa zmestilo zdieľanie pod vizitku */
-            overflow-x: hidden;
-            overflow-y: auto;
+            width: 100%; height: 100%;
+            overflow: hidden; /* Fix proti scrollovaniu */
+            background: radial-gradient(circle, #f9f0df 0%, #e6be8a 100%);
         }
 
-        body {
-            background: radial-gradient(circle, #f9f0df 0%, #e6be8a 100%);
+        /* Tento obal zabezpečí, že sa všetko zmestí na obrazovku bez scrollu */
+        .main-wrapper {
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px 0; /* Priestor nad a pod vizitkou */
-            font-family: 'Arial', sans-serif;
-            -webkit-font-smoothing: antialiased;
+            padding: 10px;
+            /* Na veľmi malých mobiloch mierne zmenší celok, aby nebol scroll */
+            transform: scale(min(1, calc(100vh / 880))); 
+            transform-origin: center center;
         }
 
         .card {
@@ -47,7 +50,7 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            margin-bottom: 25px; /* Medzera medzi vizitkou a zdieľaním */
+            margin-bottom: 20px;
         }
 
         .top-image {
@@ -185,11 +188,9 @@
             text-align: center;
         }
 
-        /* Sekcia zdieľania pod vizitkou */
         .share-area {
             text-align: center;
             width: 350px;
-            padding-bottom: 20px;
         }
 
         .share-label {
@@ -219,14 +220,7 @@
             border-radius: 50%;
             text-decoration: none;
             border: 1px solid #c5a059;
-            transition: 0.3s;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .share-item:hover {
-            background: #c5a059;
-            color: white;
-            transform: translateY(-3px);
         }
 
         .copy-link-btn {
@@ -245,46 +239,48 @@
 </head>
 <body>
 
-<div class="card">
-    <div class="top-image"></div>
-    <div class="content">
-        <p class="logo-text">LOVEFILM</p>
-        <span class="logo-sub">MOTION PICTURES</span>
-        <h1>Svadobný kameraman</h1>
-        <p class="slogan">Zachytíme váš jedinečný deň</p>
-        <ul class="services">
-            <li>Filmové svadobné klipy</li>
-            <li>Celodenný záznam a spracovanie</li>
-            <li>Profesionálna postprodukcia</li>
-        </ul>
-    </div>
-    <div class="contacts">
-        <a href="tel:+421950535194" class="contact-link"><i class="fas fa-phone icon"></i> +421 950 535 194</a>
-        <a href="mailto:lovefilmmotionpictures@gmail.com" class="contact-link"><i class="fas fa-envelope icon"></i> lovefilmmotionpictures@gmail.com</a>
-        <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="contact-link"><i class="fab fa-facebook-f icon"></i> Facebook: LOVEFILM</a>
-        <div class="btn-container">
-            <a href="https://lovefilm.rf.gd/?i=1" target="_blank" class="main-btn">Rezervuj si termín</a>
-            <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="secondary-btn">Portfólio</a>
+<div class="main-wrapper">
+    <div class="card">
+        <div class="top-image"></div>
+        <div class="content">
+            <p class="logo-text">LOVEFILM</p>
+            <span class="logo-sub">MOTION PICTURES</span>
+            <h1>Svadobný kameraman</h1>
+            <p class="slogan">Zachytíme váš jedinečný deň</p>
+            <ul class="services">
+                <li>Filmové svadobné klipy</li>
+                <li>Celodenný záznam a spracovanie</li>
+                <li>Profesionálna postprodukcia</li>
+            </ul>
         </div>
-        <div class="qr-container">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://jozmas.github.io/lovefilm/" alt="QR Vizitka">
+        <div class="contacts">
+            <a href="tel:+421950535194" class="contact-link"><i class="fas fa-phone icon"></i> +421 950 535 194</a>
+            <a href="mailto:lovefilmmotionpictures@gmail.com" class="contact-link"><i class="fas fa-envelope icon"></i> lovefilm...pictures@gmail.com</a>
+            <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="contact-link"><i class="fab fa-facebook-f icon"></i> Facebook: LOVEFILM</a>
+            <div class="btn-container">
+                <a href="https://lovefilm.rf.gd/?i=1" target="_blank" class="main-btn">Rezervuj si termín</a>
+                <a href="https://www.facebook.com/svadobnykameramanorava" target="_blank" class="secondary-btn">Portfólio</a>
+            </div>
+            <div class="qr-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://jozmas.github.io/lovefilm/" alt="QR">
+            </div>
         </div>
     </div>
-</div>
 
-<div class="share-area">
-    <div class="share-label">Odporučte nás ďalej</div>
-    <div class="share-buttons">
-        <a href="https://www.facebook.com/sharer/sharer.php?u=https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://twitter.com/intent/tweet?url=https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
-            <i class="fab fa-x-twitter"></i>
-        </a>
-        <a href="https://api.whatsapp.com/send?text=Pozri si túto svadobnú vizitku: https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
-            <i class="fab fa-whatsapp"></i>
-        </a>
-        <button class="copy-link-btn" onclick="copyURL()" id="copyBtn">Kopírovať odkaz</button>
+    <div class="share-area">
+        <div class="share-label">Odporučte nás ďalej</div>
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?url=https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
+                <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://api.whatsapp.com/send?text=Pozri si túto svadobnú vizitku: https://jozmas.github.io/lovefilm/" target="_blank" class="share-item">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <button class="copy-link-btn" onclick="copyURL()" id="copyBtn">Kopírovať odkaz</button>
+        </div>
     </div>
 </div>
 
